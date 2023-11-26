@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "devDependencies": {
     "@parcel/transformer-sass": "^2.10.3",
     "process": "^0.11.10"
@@ -62,9 +63,27 @@
     "weak-lru-cache": "^1.2.2",
     "yallist": "^4.0.0"
   },
+=======
+  "name": "c",
+  "version": "1.0.0",
+  "main": "index.js",
+>>>>>>> 16f865eef113071b13956bc8b737a34f824deeff
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
+<<<<<<< HEAD
   "license": "ISC"
+=======
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.10.3",
+    "process": "^0.11.10"
+  }
+>>>>>>> 16f865eef113071b13956bc8b737a34f824deeff
 }
