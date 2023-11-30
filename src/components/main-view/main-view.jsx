@@ -12,35 +12,36 @@ export const MainView = () => {
     ]);
 
     const [selectedMovie, setSelectedMovies] = useState(null);
-    const [user, setUser] = useState(storedUser? storedUser : null);
-    const [token, setToken] = useState(storedToken? storedToken : null);
+    const [user, setUser] = useState(storedUser ? storedUser : null);
+    const [token, setToken] = useState(storedToken ? storedToken : null);
 
     useEffect(() => {
-        if (!token) 
+        if (!token)
             return;
         
         fetch("https://myflix-922o.onrender.com/movies",
             {
-            headers: { Authorization: `Bearer ${token}` },
-    })
-        .then((response) => response.json())
-        .then((movies) => {
-            console.log(movies);
-        });
-    }, [token]);
+                headers: { Authorization: `Bearer ${token}` },
+            })
+            .then((response) => response.json())
+            .then((movies) => {
+                console.log(movies);
+            });
     
-                const moviesFromApi = data.docs.map((doc) => {
-                    return {
-                        id: movie.id,
-                        Title: movie.Title,
-                        ImagePath: movie.ImagePath,
-                        Description: movie.Description,
-                        Genre: { Name: movie.Genre.Name },
-                        Director: { Name: movie.Director.Name }
+    const moviesFromApi = data.docs.map((doc) => {
+        return {
+            id: movie.id,
+            Title: movie.Title,
+            ImagePath: movie.ImagePath,
+            Description: movie.Description,
+            Genre: { Name: movie.Genre.Name },
+            Director: { Name: movie.Director.Name }
+                    
                         
-                    };
-                });
-                setMovies(moviesFromApi);
+        };
+    });
+    setMovies(moviesFromApi);
+}, [token]);
             };
     
 
