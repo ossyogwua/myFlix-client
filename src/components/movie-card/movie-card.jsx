@@ -1,4 +1,5 @@
-import PropType from "prop-types";
+import PropTypes from 'prop-types';
+
 export const MovieCard = ({ movie, onMovieClick }) => {
     return (
         <div
@@ -6,7 +7,7 @@ export const MovieCard = ({ movie, onMovieClick }) => {
                 onMovieClick(movie);
             }}
         >
-            {movie.title}
+            {movie.Title}
         </div >
     );
 };

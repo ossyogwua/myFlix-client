@@ -16,8 +16,9 @@ export const MainView = () => {
     const [token, setToken] = useState(storedToken ? storedToken : null);
 
     useEffect(() => {
-        if (!token)
+        if (!token) {
             return;
+        }
         
         fetch("https://myflix-922o.onrender.com/movies",
             {
@@ -26,46 +27,47 @@ export const MainView = () => {
             .then((response) => response.json())
             .then((movies) => {
                 console.log(movies);
+                const moviesFromApi = movies.map((movie) => {
+                    return {
+                        id: movie._id,
+                        Title: movie.Title,
+                        ImagePath: movie.ImagePath,
+                        Description: movie.Description,
+                        Genre: { Name: movie.Genre.Name },
+                        Director: { Name: movie.Director.Name }
+                            
+                                
+                    };
+                });
+                setMovies(moviesFromApi);
             });
     
-    const moviesFromApi = data.docs.map((doc) => {
-        return {
-            id: movie.id,
-            Title: movie.Title,
-            ImagePath: movie.ImagePath,
-            Description: movie.Description,
-            Genre: { Name: movie.Genre.Name },
-            Director: { Name: movie.Director.Name }
-                    
-                        
-        };
-    });
-    setMovies(moviesFromApi);
-}, [token]);
-            };
+
+    }, [token]);
+            
     
 
     if (!user) {
         return (
             <>
-            <LoginView onLoggedIn={(user, token) => {
-            setUser(user);
-            setToken(token);
-        }} />
-            or
-            <SignupView />
-                </>
+                <LoginView onLoggedIn={(user, token) => {
+                    setUser(user);
+                    setToken(token);
+                }} />
+                or
+                <SignupView />
+            </>
         );
     }
 
     if (selectedMovie) {
         return (
-            <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+            <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovies(null)} />
 
         );
     }
 
-    if (movies.lenght === 0) {
+    if (movies.length === 0) {
         return <div>The list is empthy!</div>;
     }
 
@@ -87,4 +89,5 @@ export const MainView = () => {
             ))}
             
         </div>
-           );
+    )
+};

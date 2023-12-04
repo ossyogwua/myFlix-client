@@ -2,8 +2,8 @@
 import { useState} from "react";
 
 export const LoginView = ({ onLoggedIn }) => {
-    const [username, setUsername] = usestate("");
-    const [password, setPassword] = usestate("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
 
     const handleSubmit = (event) => {
         // this prevents the default behaviour of the form which is to reload the entire page
@@ -14,7 +14,7 @@ export const LoginView = ({ onLoggedIn }) => {
             Password: password
         };
 
-        fetch("https://myflix-922o.onrender.com/account/login.json",
+        fetch("https://myflix-922o.onrender.com/login",
             {
                 method: "POST",
                 headers: {
