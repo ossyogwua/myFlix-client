@@ -5,15 +5,15 @@ import { Button, Card } from "react-bootstrap";
 export const MovieCard = ({ movie, onMovieClick }) => {
     return (
         <Card className="h-100 mt-5 card-shadow">
-         <div className="position-relative .d-inline-block">
                 <Card.Img variant="top card-img" src={movie.ImagePath}/>
-                <div>
-                </div>
                 <Card.Body>
                 <Card.Title>{movie.Title}</Card.Title>
                 <Card.Text>{movie.Director.Name}</Card.Text>
+                <Button onClick={() => onMovieClick(movie)} variant="link">
+                    Open
+                    </Button>
                 </Card.Body>
-                </div>
+                
         </Card>
         );
 };

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { Row } from 'react-bootstrap/Row';
-import { Col } from 'react-bootstrap/Col';
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
+import  Row  from 'react-bootstrap/Row';
+import  Col  from 'react-bootstrap/Col';
 
 
 
@@ -50,27 +50,24 @@ export const MainView = () => {
             
     
 
-    return 
-    !user ? (
-            <Row className="margin-top-custom justify-content-center mb-5">
-                <div className="login--view">
+    return (
+        <Row className="margin-top-custom justify-content-center">
+            !user ? (
+                <Col md={5}>
                     <LoginView onLoggedIn={(user, token) => {
                         setUser(user);
                         setToken(token);
                     }} />
-                </div>
+                or
+                <SignupView />
+                </Col>
                     
-                    
-                <div className="signup--view hide--signup-or-login">
-                    <SignupView />
-                </div>
-            </Row>
+            
         ) :
             selectedMovie ? (
-                <>
+                <Col md={8}>
                     
                     <button
-                        variant="outline-primary"
                         onClick={() => {
                             setUser(null); setToken(null);
                             localStorage.clear();
@@ -79,57 +76,29 @@ export const MainView = () => {
                         Logout
                     </button>
 
-                    <Row className="justify-content-md-center">
-                        <MovieView
+                    <MovieView
+                        style={{ border: "1px solid blue" }}
                             movie={selectedMovie} onBackClick={() => setSelectedMovies(null)}
                             token={token}
-                        />
+                />
+            </Col>
+            
+            ) : movies.length === 0 ? (
+                <div>No results Found!</div>
+            ) : (
         
                 
                         {movies.map((movie) => (
-                            <Col md={3}>
+                            <Col className="mb-4"key={movies.id}md={3}>
                                 <MovieCard
-                                    key={movies.id}
                                     movie={movies}
                                     onMovieClick={(newSelectedMovie) => {
                                         setSelectedMovies(newSelectedMovie);
                                     }} />
                             </Col>
                         ))}
-                    </Row>
-                </>
-            ) : movies.length === 0 ? (
-                <div>No results Found!</div>
-            ) : (
-                <>
-                    <Button
-                        variant="outline-primary"
-                        onClick={() => {
-                            setUser(null);
-                            setToken(null);
-                            localStorage.clear();
-                        }}
-                    >
-                        Logout
-                    </Button>
-                    <Row className="justify-content-md-center home-page--main">
-                        {movies.map((movie) => {
-                            return (
-                                <Col className="mb-5" key={movie.id} md={3}>
-                                    <MovieCard
-                                        movie={movie}
-                                        onMovieClick={(newSelectedMovie) => {
-                                            setSelectedMovie(newSelectedMovie);
-    
-                                        }}
-                                    />
-                                </Col>
-                            );
-                        })}
-                    </Row>
-                </>
-            );
         
-            
-                        
-    };
+         )
+                    </Row >
+                    );
+                };
