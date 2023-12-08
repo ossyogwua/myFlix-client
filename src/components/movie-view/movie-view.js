@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button";
 export const MovieView = ({ movie, onBackClick, token }) => {
   const [selectedMovie, setMovie] = useState([]);
 
-  let url = ` https://myflix-922o.onrender.com` + movie.url;
+  let url = ` https://myflix-922o.onrender.com/movie`;
   useEffect(() => {
     if (!token) {
       return;

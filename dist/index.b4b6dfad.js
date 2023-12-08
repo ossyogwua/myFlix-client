@@ -30698,7 +30698,7 @@ var _s = $RefreshSig$();
 const MovieView = ({ movie, onBackClick, token })=>{
     _s();
     const [selectedMovie, setMovie] = (0, _react.useState)([]);
-    let url = ` https://myflix-922o.onrender.com` + movie.url;
+    let url = ` https://myflix-922o.onrender.com/movie`;
     (0, _react.useEffect)(()=>{
         if (!token) return;
         fetch(url, {
