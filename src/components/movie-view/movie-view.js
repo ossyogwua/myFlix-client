@@ -36,11 +36,9 @@ export const MovieView = ({ movie, onBackClick, token }) => {
     <>
       <Row className="justify-content-md-center one-movie--view " flex="1">
         <Col md={6} className="col-12">
-          <img
-            src={movie.ImagePath}
-            alt="movie cover"
-            className="mx-auto w-100"
-          />
+          <div>
+            <img src={movie.ImagePath} />
+          </div>
         </Col>
         <Col md={6} className="col-12">
           <div className="movie-view-text-Title">
