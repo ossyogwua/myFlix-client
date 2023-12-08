@@ -57,7 +57,13 @@ export const MovieView = ({ movie, onBackClick, token }) => {
             <span className="h6">Description: </span>
             <span>{movie.Description}</span>
           </div>
-          <button onClick={onBackClick}>Back</button>
+          <button
+            onClick={onBackClick}
+            className="back-button"
+            style={{ cursor: "pointer" }}
+          >
+            Back
+          </button>
         </Col>
       </Row>
     </>
