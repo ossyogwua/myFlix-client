@@ -1,14 +1,15 @@
 
 import { useState } from "react";
 import { Button } from "react-bootstrap/Button";
-import { Form } from  "react-bootstrap/Form";
+import { Row } from "react-bootstrap/Form";
+import { Col } from 'react-bootstrap/Col';
+
 
 
 export const LoginView = ({ onLoggedIn }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
-    const [birthday, setBirthday] = useState("");
+
 
 
     const handleSubmit = (event) => {
