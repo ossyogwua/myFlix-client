@@ -27299,7 +27299,7 @@ const MainView = ()=>{
                     className: "mb-4",
                     md: 3,
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                        movie: movies,
+                        movie: movie,
                         onMovieClick: (newSelectedMovie)=>{
                             setSelectedMovies(newSelectedMovie);
                         }
@@ -27308,7 +27308,7 @@ const MainView = ()=>{
                         lineNumber: 93,
                         columnNumber: 33
                     }, undefined)
-                }, movies.id, false, {
+                }, movie.id, false, {
                     fileName: "src/components/main-view/main-view.jsx",
                     lineNumber: 92,
                     columnNumber: 29
@@ -28489,6 +28489,8 @@ _c = MovieCard;
 // define all the props constraints for the MovieCard
 MovieCard.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
+        id: (0, _propTypesDefault.default).string.isRequired,
+        image: (0, _propTypesDefault.default).string,
         Title: (0, _propTypesDefault.default).string
     }).isRequired,
     onMovieClick: (0, _propTypesDefault.default).func.isRequired
@@ -30946,7 +30948,7 @@ const LoginView = ({ onLoggedIn })=>{
                         value: username,
                         onChange: (e)=>setUsername(e.target.value),
                         required: true,
-                        minlength: "4"
+                        minLength: "4"
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
                         lineNumber: 52,
@@ -31072,7 +31074,7 @@ const SignupView = ()=>{
                         value: username,
                         onChange: (e)=>setUsername(e.target.value),
                         required: true,
-                        minlenght: "4"
+                        minLenght: "4"
                     }, void 0, false, {
                         fileName: "src/components/signup-view/signup-view.jsx",
                         lineNumber: 42,
