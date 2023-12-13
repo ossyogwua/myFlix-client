@@ -5,33 +5,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 
-export const MovieView = ({ movie, onBackClick, token }) => {
-  const [selectedMovie, setMovie] = useState([]);
-
-  let url = ` https://myflix-922o.onrender.com/movie`;
-  useEffect(() => {
-    if (!token) {
-      return;
-    }
-
-    fetch(url, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        const dataFromMovie = {
-          id: movie._id,
-          Title: movie.Title,
-          ImagePath: movie.ImagePath,
-          Description: movie.Description,
-          Genre: { Name: movie.Genre.Name },
-          Director: { Name: movie.Director.Name },
-        };
-
-        setMovie(dataFromMovie);
-      });
-  }, []);
-
+export const MovieView = ({ movie, onBackClick }) => {
   return (
     <>
       <Row className="justify-content-md-center one-movie--view " flex="1">
