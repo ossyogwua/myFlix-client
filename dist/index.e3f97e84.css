@@ -94,8 +94,8 @@
   --bs-body-line-height: 1.5;
   --bs-body-color: white;
   --bs-body-color-rgb: 255, 255, 255;
-  --bs-body-bg: gray;
-  --bs-body-bg-rgb: 128, 128, 128;
+  --bs-body-bg: blue;
+  --bs-body-bg-rgb: 0, 0, 255;
   --bs-emphasis-color: #000;
   --bs-emphasis-color-rgb: 0, 0, 0;
   --bs-secondary-color: #ffffffbf;
@@ -2673,11 +2673,11 @@ textarea.form-control-lg {
 }
 
 .form-range:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 0 1px gray, 0 0 0 .25rem #ffa50040;
+  box-shadow: 0 0 0 1px #00f, 0 0 0 .25rem #ffa50040;
 }
 
 .form-range:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 1px gray, 0 0 0 .25rem #ffa50040;
+  box-shadow: 0 0 0 1px #00f, 0 0 0 .25rem #ffa50040;
 }
 
 .form-range::-moz-focus-outer {
