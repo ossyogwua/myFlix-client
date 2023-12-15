@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import "./movie-view.scss";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Button from "react-bootstrap/Button";
+import { Button, Card } from "react-bootstrap/Button";
 
 export const MovieView = ({ movies }) => {
   const { movieId } = useParams();
-  const movie = movies.find((m) => m.id === movieId);
+  const movie = movies.find((movie) => movie._id === movieId);
+  const user = JSON.parse(localStorage.getItem("user"));
   return (
     <Row className="justify-content-md-center one-movie--view " flex="1">
       <Col md={6} className="col-12">
