@@ -6,6 +6,7 @@ import { MovieCard } from "../movie-card/movie-card";
 
 export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
     const [username, setUsername] = useState(user.Username);
+    const [password, setPassword] = useState(user.password)
     const [email, setEmail] = useState(user.Email);
     const [birthday, setBirthday] = useState(user.Birthday);
     const navigate = useNavigate();
@@ -16,6 +17,7 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
 
         const data ={
             Username: username,
+            Password: password,
             Email: email,
             Birthday: birthday
         }
@@ -68,14 +70,14 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
                     <Card>
                         <Card.Body>
                             <Card.Title>My Profile</Card.Title>
-                            <PersonSquare variant="top" color="orange" className="my-4" size={180} />
                             <Card.Text>Username:{user.Username}</Card.Text>
+                            <Card.Text>Password:{user.Password}</Card.Text>
                             <Card.Text>Email: {user.Email}</Card.Text>
-                            <Card.Text>Birthday: {moment(user.Birthday).utc().format('YYYY-MM-DD')}</Card.Text>
+                            <Card.Text>Birthday: {user.Birthday}</Card.Text>
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col md={7} className="mt-5">
+                <Col md={8} className="mt-5">
                     <Form onSubmit={handleUpdate}>
                         <Form.Group controlId="formUsername">
                             <Form.Label>Username:</Form.Label>
@@ -85,6 +87,16 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             minLength="5"
+                            />
+                            </Form.Group>
+                            <Form.Group controlId="formPassword">
+                            <Form.Label>Password:</Form.Label>
+                            <Form.Control
+                            className="mb-3"
+                            type="text"
+                            value={password}
+                            onChange={(e) => setUsername(e.target.value)}
+                
                             />
                  </Form.Group>
                         <Form.Group controlId="formEmail">

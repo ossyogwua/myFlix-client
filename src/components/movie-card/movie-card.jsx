@@ -70,7 +70,7 @@ export const MovieCard = ({ movie, token, setUser, user }) => {
                 <Card.Body>
                 <Card.Title>{movie.Title}</Card.Title>
                 <Card.Text>{movie.Director.Name}</Card.Text>
-                <Link to={`/movies/${encodedURIComponent(movie._id)}`}>
+                <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
                 <Button varient="link">Open</Button>
                     
                      </Link>
