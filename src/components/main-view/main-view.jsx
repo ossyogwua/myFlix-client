@@ -30,61 +30,75 @@ export const MainView = () => {
             .then((response) => response.json())
             .then((movies) => {
                 console.log(movies);
+                const moviesFromApi = data.map((movie) => {
+                    return {
+                        _id: movie._id,
+                        Title: movie.Title,
+                        ImagePath: movie.ImagePath,
+                        Description: movie.Description,
+                        Genre: {
+                            Name: movie.Genre.Name
+                        },
+                        Director: {
+                            Name: movie.Director.Name
+                        }
+                    };
+                });
                 setMovies(movies);
             });
     
 
     }, [token]);
 
-    // Add Favorite Movie
-    //const addFav = (id) => {
+    //Add Favorite Movie
+    const addFav = (id) => {
 
-       // fetch(`https://myflix-922o.onrender.com/users/${user.Username}/movies/${id}`, {
-           // method: "POST",
-           // headers: {
-              //  Authorization: `Bearer ${token}`
-           // }
-       // }).then((response) => {
-            //if (response.ok) {
+        fetch(`https://myflix-922o.onrender.com/users/${user.Username}/movies/${id}`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+       }).then((response) => {
+            if (response.ok) {
                 //return response.json();
-           // } else {
-               // alert("Failed to add");
-          //  }
-       // }).then((user) => {
-            //if (user) {
-                //localStorage.setItem('user', JSON.stringify(user));
-                //setUser(user);
-                //setIsFavorite(true);
-           // }
-       // }).catch(error => {
-           // console.error('Error: ', error);
-       // });
-   // };
+           } else {
+                alert("Failed to add");
+           }
+       }).then((user) => {
+            if (user) {
+            localStorage.setItem('user', JSON.stringify(user));
+                setUser(user);
+                setIsFavorite(true);
+            }
+        }).catch(error => {
+            console.error('Error: ', error);
+        });
+   };
 
-    // Remove Favorite Movie
-   // const removeFav = (id) => {
+     //Remove Favorite Movie
+   const removeFav = (id) => {
 
-        //fetch(`https://myflix-922o.onrender.com/users/${user.Username}/movies/${id}`, {
-            //method: "DELETE",
-            //headers: {
-               // Authorization: `Bearer ${token}`
-            //}
-//}).then((response) => {
-            //if (response.ok) {
-               // return response.json();
-           // } else {
-              //  alert("Failed to remove")
-           // }
-        //}).then((user) => {
-           // if (user) {
-               // localStorage.setItem('user', JSON.stringify(user));
-               // setUser(user);
-                //setIsFavorite(false);
-        //  }
-        //}).catch(error => {
-           // console.error('Error: ', error);
-       // });
-   // };
+        fetch(`https://myflix-922o.onrender.com/users/${user.Username}/movies/${id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+}).then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+               alert("Failed to remove")
+            }
+        }).then((user) => {
+           if (user) {
+               localStorage.setItem('user', JSON.stringify(user));
+                setUser(user);
+                setIsFavorite(false);
+         }
+        }).catch(error => {
+            console.error('Error: ', error);
+       });
+    };
 
 
 

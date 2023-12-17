@@ -1,18 +1,22 @@
-//import React from "react";
+import React from "react";
 import PropTypes from 'prop-types';
 import "./movie-card.scss";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export const MovieCard = ({ movie, token, setUser, user }) => {
+
+    const [isFavorite, setIsFavorite] = useState(
+        false
+      )
       
 
     useEffect(() => {
         if (user.favoriteMovies && user.favoriteMovies.includes(movie._id)) {
-          setIsFavorite(true);
+          isFavorite(true);
         }
-      }, [user]);
+     }, [user]);
     
       const addFavoriteMovie = () => {
         fetch(
@@ -31,7 +35,7 @@ export const MovieCard = ({ movie, token, setUser, user }) => {
               alert("successfully added to favorites");
               localStorage.setItem("user", JSON.stringify(user));
               setUser(user);
-              setIsFavorite(true);
+              isFavorite(true);
             }
           })
           .catch((error) => {
@@ -56,7 +60,7 @@ export const MovieCard = ({ movie, token, setUser, user }) => {
               alert("successfully deleted from favorites");
               localStorage.setItem("user", JSON.stringify(user));
               setUser(user);
-              setIsFavorite(false);
+              isFavorite(false);
             }
           })
           .catch((error) => {
@@ -71,17 +75,33 @@ export const MovieCard = ({ movie, token, setUser, user }) => {
                 <Card.Title>{movie.Title}</Card.Title>
                 <Card.Text>{movie.Director.Name}</Card.Text>
                 <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
-                <Button varient="link">Open</Button>
+                    <Button varient="link">Open</Button>
+
+                    
+                    <div>
+                    {isFavorite ? (
+                        <Button className="fav-button" onClick={() => removeFav(movie._id)}/>
+                    ) : (
+                        <Button className="fav-button" onClick={() => addFav(movie._id)}/>
+                    )}
+                </div>
+                
                     
                      </Link>
-                </Card.Body>
+            </Card.Body>
+            
+            
                 
         </Card>
+
+
         );
 };
-    
-             
-// define all the props constraints for the MovieCard
+
+
+
+
+    // define all the props constraints for the MovieCard
 MovieCard.propTypes = {
     movie: PropTypes.shape({
        // id: PropTypes.string.isRequired,

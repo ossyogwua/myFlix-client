@@ -10,7 +10,8 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
     const [email, setEmail] = useState(user.Email);
     const [birthday, setBirthday] = useState(user.Birthday);
     const navigate = useNavigate();
-    const favoriteMovieList = movies.filter(m => user.FavoriteMovies.includes(m._id));
+   const favoriteMovieList = user.favoriteMovies ? movies.filter((movie) => user.favoriteMovies.includes(movie._id)) : [];
+    //const favoriteMovieList = movies.filter(movie => user.favoriteMovies.movie._id);
     const token = localStorage.getItem('token');
     const handleUpdate = (event) => { event.preventDefault();
         const user = JSON.parse(localStorage.getItem('user'));
@@ -67,6 +68,24 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
         <Container className="my-5">
             <Row>
                 <Col md={4} className="text-center text-md-start ms-3">
+                    <h2 className="profile-title">Favorite movies</h2>
+                    {favoriteMovieList.map((movie) => {
+                        return (
+      
+                            <Col
+                                key={movie._id}
+                                className="m-3"
+                            >
+                                <MovieCard
+                                    movie={movie}
+                                    token={token}
+                                    setUser={setUser}
+                                    user={user}
+                                />
+                            </Col>
+                        );
+                    })}
+   
                     <Card>
                         <Card.Body>
                             <Card.Title>My Profile</Card.Title>
@@ -82,39 +101,39 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
                         <Form.Group controlId="formUsername">
                             <Form.Label>Username:</Form.Label>
                             <Form.Control
-                            className="mb-3"
-                            type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            minLength="5"
+                                className="mb-3"
+                                type="text"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                minLength="5"
                             />
-                            </Form.Group>
-                            <Form.Group controlId="formPassword">
+                        </Form.Group>
+                        <Form.Group controlId="formPassword">
                             <Form.Label>Password:</Form.Label>
                             <Form.Control
-                            className="mb-3"
-                            type="text"
-                            value={password}
-                            onChange={(e) => setUsername(e.target.value)}
+                                className="mb-3"
+                                type="text"
+                                value={password}
+                                onChange={(e) => setUsername(e.target.value)}
                 
                             />
-                 </Form.Group>
+                        </Form.Group>
                         <Form.Group controlId="formEmail">
                             <Form.Label>Email:</Form.Label>
                             <Form.Control
-                            className="mb-3"
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                                className="mb-3"
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </Form.Group>
                         <Form.Group controlId="formBirthday">
                             <Form.Label>Birthday:</Form.Label>
                             <Form.Control
-                            className="mb-2"
-                            type="date"
-                            value={birthday}
-                            onChange={(e) => setBirthday(e.target.value)}
+                                className="mb-2"
+                                type="date"
+                                value={birthday}
+                                onChange={(e) => setBirthday(e.target.value)}
                             />
                         </Form.Group>
                         <Button type="submit" onClick={handleUpdate} className="mt-3 me-2">Update</Button>
@@ -126,20 +145,20 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
                 <h2 className="mt-5 text-center text-md-start">Favorite Movies</h2>
                 <Row className="justify-content-center">
                     {
-                    favoriteMovieList?.length !== 0 ?
-                    favoriteMovieList?.map((movie) => (
-                        <Col sm={7} md={5} lg={3} xl={2} className="mx-2 mt-2 mb-5 col-6 similar-movies-img" key={movie._id}>
-                            <MovieCard
-                                movie={movie}
-                                removeFav={removeFav}
-                                addFav={addFav}
-                                isFavorite={user.FavoriteMovies.includes(movie._id)}
-                            />
-                        </Col>
-                    ))
-                    : <Col>
-                    <p>There are no favorites Movies</p>
-                    </Col>
+                        favoriteMovieList?.length !== 0 ?
+                            favoriteMovieList?.map((movie) => (
+                                //<Col sm={7} md={5} lg={3} xl={2} className="mx-2 mt-2 mb-5 col-6 similar-movies-img" key={movie._id}>
+                                <MovieCard
+                                    movie={movie}
+                                    removeFav={removeFav}
+                                    addFav={addFav}
+                                    isFavorite={user.FavoriteMovies.includes(movie._id)}
+                                />
+                                // </Col>
+                            ))
+                            : <Col>
+                                <p>There are no favorites Movies</p>
+                            </Col>
                     }
                 </Row>
             </Row>
