@@ -5,7 +5,7 @@ import { Button, Card, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-export const MovieCard = ({ movie, token, setUser, user }) => {
+export const MovieCard = ({ movie, token, setUser, user}) => {
 
     const [isFavorite, setIsFavorite] = useState(
         false
@@ -74,15 +74,21 @@ export const MovieCard = ({ movie, token, setUser, user }) => {
                 <Card.Body>
                 <Card.Title>{movie.Title}</Card.Title>
                 <Card.Text>{movie.Director.Name}</Card.Text>
+                <Card.Text>{movie.Description}</Card.Text>
                 <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
                     <Button varient="link">Open</Button>
 
                     
                     <div>
                     {isFavorite ? (
-                        <Button className="fav-button" onClick={() => removeFav(movie._id)}/>
+                            <Button className="fav-button" onClick={() => removeFavoriteMovie(movie._id)}>
+                                Remove
+                                </Button>
                     ) : (
-                        <Button className="fav-button" onClick={() => addFav(movie._id)}/>
+                                <Button className="fav-button" onClick={() => addFavoriteMovie(movie._id)}>
+                                    Add
+                                    </Button>
+                                
                     )}
                 </div>
                 

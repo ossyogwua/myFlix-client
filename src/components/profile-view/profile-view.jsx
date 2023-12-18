@@ -4,9 +4,9 @@ import { Col, Row, Container } from "react-bootstrap";
 import { Button, Card, Form } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 
-export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
+export const ProfileView = ({ user, movies, setUser}) => {
     const [username, setUsername] = useState(user.Username);
-    const [password, setPassword] = useState(user.password)
+    const [password, setPassword] = useState(user.Password)
     const [email, setEmail] = useState(user.Email);
     const [birthday, setBirthday] = useState(user.Birthday);
     const navigate = useNavigate();
@@ -78,6 +78,9 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
                             >
                                 <MovieCard
                                     movie={movie}
+                                    //removeFavavoritMovie={removeFavoriteMovie}
+                                //addFavoriteMovie={addFavoriteMovie}
+                               // isFavorite={user.FavoriteMovies.includes(movie._id)}
                                     token={token}
                                     setUser={setUser}
                                     user={user}
@@ -114,7 +117,7 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
                                 className="mb-3"
                                 type="text"
                                 value={password}
-                                onChange={(e) => setUsername(e.target.value)}
+                                onChange={(e) => setPassword(e.target.value)}
                 
                             />
                         </Form.Group>
@@ -150,8 +153,8 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
                                 //<Col sm={7} md={5} lg={3} xl={2} className="mx-2 mt-2 mb-5 col-6 similar-movies-img" key={movie._id}>
                                 <MovieCard
                                     movie={movie}
-                                    removeFav={removeFav}
-                                    addFav={addFav}
+                                    removeFavoriteMovie={removeFavoriteMovie}
+                                    addFavoriteMovie={addFavoriteMovie}
                                     isFavorite={user.FavoriteMovies.includes(movie._id)}
                                 />
                                 // </Col>
@@ -160,6 +163,7 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
                                 <p>There are no favorites Movies</p>
                             </Col>
                     }
+                    
                 </Row>
             </Row>
         </Container>

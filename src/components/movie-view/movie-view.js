@@ -7,7 +7,7 @@ import { Col, Row } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 import { Button, Card } from "react-bootstrap";
 
-export const MovieView = ({ movies, removeFav, addFav }) => {
+export const MovieView = ({ movies }) => {
   const { movieId } = useParams();
   const movie = movies.find((movie) => movie._id === movieId);
   const user = JSON.parse(localStorage.getItem("user"));
@@ -45,12 +45,15 @@ export const MovieView = ({ movies, removeFav, addFav }) => {
             <Button
               className="fav-button"
               on
-              onClick={() => removeFav(movie._id)}
+              onClick={() => removeFavoriteMovie(movie._id)}
             >
               Remove from Favorite
             </Button>
           ) : (
-            <Button className="fav-button" onClick={() => addFav(movie._id)}>
+            <Button
+              className="fav-button"
+              onClick={() => addFavoriteMovie(movie._id)}
+            >
               Add to Favorite
             </Button>
           )}

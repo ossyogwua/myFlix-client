@@ -51,7 +51,7 @@ export const MainView = () => {
     }, [token]);
 
     //Add Favorite Movie
-    const addFav = (id) => {
+    const addFavoriteMovie = (id) => {
 
         fetch(`https://myflix-922o.onrender.com/users/${user.Username}/movies/${id}`, {
             method: "POST",
@@ -76,7 +76,7 @@ export const MainView = () => {
    };
 
      //Remove Favorite Movie
-   const removeFav = (id) => {
+   const removeFavoriteMovie = (id) => {
 
         fetch(`https://myflix-922o.onrender.com/users/${user.Username}/movies/${id}`, {
             method: "DELETE",
@@ -163,8 +163,8 @@ export const MainView = () => {
                                     ) : (
                                         <Col md={8}>
                                                 <MovieView movies={movies}
-                                                    removeFav={removeFav}
-                                                    addFav={addFav}
+                                                    removeFavoriteMovie={removeFavoriteMovie}
+                                                    addFavoriteMovie={addFavoriteMovie}
                                                 />
                                         </Col>
                                     )}
@@ -193,8 +193,8 @@ export const MainView = () => {
                                                        <MovieCard movie={movie}
                                                            user={user}
                                                            
-                                            removeFav={removeFav} 
-                                            addFav={addFav} 
+                                            removeFavoriteMovie={removeFavoriteMovie} 
+                                            addFavoriteMovie={addFavoriteMovie} 
                                             isFavorite={user.FavoriteMovies.includes(movie._id)}
                                                         
                                                     />
@@ -219,8 +219,8 @@ export const MainView = () => {
                                                                     user={user}
                                                                             token={token}
                                                                             movies={movies}
-                                                                            removeFav={removeFav}
-                                                                            addFav={addFav}
+                                                                            removeFavoriteMovie={removeFavoriteMovie}
+                                                                            addFavoriteMovie={addFavoriteMovie}
                                                                             setUser={setUser}
                                                                     
                                                                    
