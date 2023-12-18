@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
@@ -30,7 +30,7 @@ export const MainView = () => {
             .then((response) => response.json())
             .then((movies) => {
                 console.log(movies);
-                const moviesFromApi = data.map((movie) => {
+                const moviesFromApi = movies.map((movie) => {
                     return {
                         _id: movie._id,
                         Title: movie.Title,
@@ -60,7 +60,7 @@ export const MainView = () => {
             }
        }).then((response) => {
             if (response.ok) {
-                //return response.json();
+            return response.json();
            } else {
                 alert("Failed to add");
            }
@@ -122,7 +122,7 @@ export const MainView = () => {
                                     <Navigate to="/" />
                                 ) : (
                                     <Col md={5}>
-                                            //<LoginView onLoggedIn={(user) => setUser(user)} />
+                                            <LoginView onLoggedIn={(user) => setUser(user)} />
                                             <SignupView
                                             />
                                     </Col>
@@ -162,7 +162,9 @@ export const MainView = () => {
                                         <Col>The list is empty!</Col>
                                     ) : (
                                         <Col md={8}>
-                                            <MovieView movies={movies}
+                                                <MovieView movies={movies}
+                                                    removeFav={removeFav}
+                                                    addFav={addFav}
                                                 />
                                         </Col>
                                     )}
@@ -190,6 +192,10 @@ export const MainView = () => {
                                                 <Col className="mb-4" key={movie._id} md={3}>
                                                        <MovieCard movie={movie}
                                                            user={user}
+                                                           
+                                            removeFav={removeFav} 
+                                            addFav={addFav} 
+                                            isFavorite={user.FavoriteMovies.includes(movie._id)}
                                                         
                                                     />
                                                 </Col>
@@ -212,8 +218,11 @@ export const MainView = () => {
                                                                 <ProfileView
                                                                     user={user}
                                                                             token={token}
+                                                                            movies={movies}
+                                                                            removeFav={removeFav}
+                                                                            addFav={addFav}
                                                                             setUser={setUser}
-                                                                    movies={movies}
+                                                                    
                                                                    
                                                                             onDelete={() => {
                                                                                 setUser(null);
