@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-//import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import "./movie-view.scss";
@@ -52,11 +52,19 @@ export const MovieView = ({ movies }) => {
           ) : (
             <Button
               className="fav-button"
-              onClick={() => addFavoriteMovie(movie._id)}
+              onClick={() => addFavorite(movie._id)}
             >
               Add to Favorite
             </Button>
           )}
+        </div>
+        <div>
+          <MovieCard
+            movie={movie}
+            removeFavoriteMovie={removeFavoriteMovie}
+            addFavoriteMovie={addFavoriteMovie}
+            isFavorite={user.FavoriteMovies.includes(movie._id)}
+          />
         </div>
 
         <Link to={`/`}>
@@ -68,3 +76,5 @@ export const MovieView = ({ movies }) => {
     </Row>
   );
 };
+
+export default MovieView;
