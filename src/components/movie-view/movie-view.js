@@ -15,6 +15,12 @@ export const MovieView = ({
 }) => {
   const { movieId } = useParams();
   const movie = movies.find((movie) => movie._id === movieId);
+  const selectedMovie = movies.find((movie) => movie._id === movieId);
+  const similarMovies = movies.filter((movie) => {
+    return (
+      movie._id !== movieId && movie.Genre.Name === selectedMovie.Genre.Name
+    );
+  });
   const user = JSON.parse(localStorage.getItem("user"));
 
   console.log(user, movie);
@@ -70,6 +76,29 @@ export const MovieView = ({
                 Back
               </button>
             </Link>
+          </div>
+          <div>
+            <h2>Similar Movies</h2>
+            <Row className="justify-content-center">
+              {similarMovies.length !== 0 ? (
+                similarMovies
+                  .slice(0, 5)
+                  .map((movie) => (
+                    <Col
+                      sm={5}
+                      md={4}
+                      lg={3}
+                      xl={2}
+                      className="mx-2 my-3 col-6 similar-movies-img"
+                      key={movie._id}
+                    ></Col>
+                  ))
+              ) : (
+                <Col>
+                  <p>There are no similar Movies</p>
+                </Col>
+              )}
+            </Row>
           </div>
         </div>
       </Col>
