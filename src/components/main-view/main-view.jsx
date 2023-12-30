@@ -6,8 +6,8 @@ import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { ProfileView } from "../profile-view/profile-view.jsx";
 import Row from "react-bootstrap/Row";
-import { Col, Form, Button } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Col } from "react-bootstrap";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -174,44 +174,6 @@ export const MainView = () => {
                   <Col>The list is empty</Col>
                 ) : (
                   <>
-                    <Form className="form-inline mt-5 d-flex justify-content-center">
-                      <Form.Control
-                        className="ms-5 mx-md-0"
-                        type="search"
-                        id="searchForm"
-                        onChange={(e) => setSearch(e.target.value)}
-                        placeholder="Search for ..."
-                        aria-label="Search"
-                      />
-                      <Form.Select
-                        className="ms-1 ms-md-3 w-25"
-                        aria-label="Default select genre"
-                        onChange={(e) => setSelectedGenre(e.target.value)}
-                      >
-                        <option value="" selected>
-                          Search by genre
-                        </option>
-                        <option value="Comedy Horror">Comedy Horror</option>
-                        <option value="Horror">Horror</option>
-                        <option value="Musical">Musical</option>
-                        <option value="Fantasy">Fantasy</option>
-                        <option value="Thriller">Thriller</option>
-                      </Form.Select>
-                    </Form>
-                    {movies
-                      .filter((movie) => {
-                        return selectedGenre === ""
-                          ? movie
-                          : movie.Genre.Name === selectedGenre;
-                      })
-                      .filter((movie) => {
-                        return search === ""
-                          ? movie
-                          : movie.Title.toLowerCase().includes(
-                              search.toLowerCase()
-                            );
-                      })}
-                    ;
                     {movies.map((movie) => (
                       <Col className="mb-4" key={movie._id} md={3}>
                         <MovieCard
